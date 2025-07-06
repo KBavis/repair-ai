@@ -1,4 +1,4 @@
-package com.repair.ai.repair_assistant_backend;
+package com.repair.ai.engine;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

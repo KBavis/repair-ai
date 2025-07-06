@@ -1,4 +1,4 @@
-package com.repair.ai.repair_assistant_backend;
+package com.repair.ai.engine;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
