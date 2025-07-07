@@ -2,7 +2,6 @@ package com.repair.ai.engine.controller;
 
 import com.repair.ai.engine.service.LLMService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,8 +15,8 @@ public class LLMController {
 
 
     @GetMapping("/test")
-    public ResponseEntity<?> test() {
-        return ResponseEntity.ok(llmService.testingApiCallToOpenAi());
+    public void test() {
+        llmService.testingApiCallToOpenAi();
     }
 
 }

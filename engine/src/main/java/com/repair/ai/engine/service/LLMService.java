@@ -1,34 +1,31 @@
 package com.repair.ai.engine.service;
 
 import com.openai.client.OpenAIClient;
-import com.openai.client.okhttp.OpenAIOkHttpClient;
 import com.openai.models.ChatModel;
-import com.openai.models.responses.Response;
-import com.openai.models.responses.ResponseCreateParams;
-import io.github.cdimascio.dotenv.Dotenv;
+import com.openai.models.responses.*;
+import com.repair.ai.engine.models.wrapper.Repair;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+@Log4j2
 @Service
 public class LLMService {
 
-    //TODO: Move this to config
     @Autowired
-    private Dotenv dotenv;
+    private OpenAIClient openAIClient;
 
+    public void testingApiCallToOpenAi() {
 
-    public Response testingApiCallToOpenAi() {
+        String testInput = "My kitchen sink won't drain properly. The water goes down very slowly. Please diagnose the issue and tell me the repair.";
 
-        // TODO: Move this to config
-        OpenAIClient openAIClient = OpenAIOkHttpClient.builder()
-                .apiKey(dotenv.get("OPENAI_API_KEY"))
+        StructuredResponseCreateParams<Repair> params = ResponseCreateParams.builder()
+                .input(testInput)
+                .model(ChatModel.GPT_4O)
+                .text(Repair.class)
                 .build();
 
-        ResponseCreateParams params = ResponseCreateParams.builder()
-                .input("Say this is a test and hello to RepairAI")
-                .model(ChatModel.GPT_3_5_TURBO)
-                .build();
-
-        return openAIClient.responses().create(params);
+        StructuredResponse<Repair> repair = openAIClient.responses().create(params);
+        log.info(repair);
     }
 }
