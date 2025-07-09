@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/llm")
-public class LLMController {
+@RequestMapping("/repair")
+public class RepairController {
 
     @Autowired
     private LLMService llmService;
