@@ -5,8 +5,6 @@ build/
 gradle/
 !**/src/main/**/build/
 !**/src/test/**/build/
-gradlew
-gradlew.bat
 
 ### STS ###
 .apt_generated
