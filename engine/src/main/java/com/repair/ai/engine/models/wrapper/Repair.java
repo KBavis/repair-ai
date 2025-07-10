@@ -3,12 +3,14 @@ package com.repair.ai.engine.models.wrapper;
 import com.fasterxml.jackson.annotation.JsonClassDescription;
 import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.util.List;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @JsonClassDescription("Relevant information regarding the repair to perform based on the issue")
-public class Repair {
+public class Repair extends AIResponse{
 
     @JsonPropertyDescription("The category this particular repair resides in")
     public String category;
