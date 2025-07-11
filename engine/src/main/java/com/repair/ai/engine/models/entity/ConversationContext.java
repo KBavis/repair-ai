@@ -39,7 +39,7 @@ public class ConversationContext {
     private Integer questionCount;
 
     @Column(name = "safety_check_passed")
-    private Boolean safetyCheckPassed = false;
+    private Boolean safetyCheckPassed;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
@@ -52,6 +52,8 @@ public class ConversationContext {
         this.currentState = ConversationState.INITIAL_ASSESSMENT;
         this.createdAt = LocalDateTime.now();
         this.updatedAt = LocalDateTime.now();
+        this.questionCount = 0;
+        this.safetyCheckPassed = false;
     }
 
 
@@ -62,5 +64,4 @@ public class ConversationContext {
 
 
 
-    //TODO: Implement updates to conversation history
 }
