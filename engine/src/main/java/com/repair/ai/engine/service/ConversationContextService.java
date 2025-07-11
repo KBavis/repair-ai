@@ -16,11 +16,38 @@ public class ConversationContextService {
      * Retrieve ConversationContext based on session ID
      *
      * @param sessionId
-     *          - existing session ID
+     *       - existing session ID
      * @return
-     *          - corresponding ConversationContext
+     *      - corresponding ConversationContext
      */
     public ConversationContext getConversationContext(String sessionId) {
-            return repository.findBySessionId(sessionId);
+            return repository.findBySessionId(sessionId)
+                    .orElse(createConversationContext(sessionId)); // create new ConversationContext if one isn't already created
+    }
+
+    /**
+     * Create a new conversation context
+     *
+     * @param sessionId
+     *          - session ID
+     * @return
+     *          - created ConversationContext
+     *
+     */
+    public ConversationContext createConversationContext(String sessionId) {
+        ConversationContext newContext = new ConversationContext(sessionId);
+        return repository.save(newContext);
+    }
+
+    /**
+     * Update an existing conversation context
+     *
+     * @param updatedContext
+     *          - updated conversation context
+     * @return
+     *          - persisted conversation context
+     */
+    public ConversationContext updateConversationContext(ConversationContext updatedContext) {
+        return repository.save(updatedContext);
     }
 }
